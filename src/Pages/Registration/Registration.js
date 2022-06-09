@@ -7,13 +7,13 @@ const Registration = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password_confirmation, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
 
   async function handleRegistration(e) {
     e.preventDefault();
 
-    if (password === confirmPassword) {
+    if (password === password_confirmation) {
       const response = await fetch(
         "https://myapi.holycareschool.com/api/register",
         {
@@ -25,6 +25,7 @@ const Registration = () => {
             name,
             email,
             password,
+            password_confirmation,
           }),
         }
       );
@@ -35,6 +36,7 @@ const Registration = () => {
         setMessage("You Are Successfully Register");
         navigate("/login");
       } else {
+        console.log(data)
         setMessage("Something Went Wrong");
         navigate("/registration");
       }
