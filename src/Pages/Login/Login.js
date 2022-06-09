@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { baseURL } from "../../BaseURL/BaseURL";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -12,20 +11,16 @@ const Login = () => {
   async function handleLogin(e) {
     e.preventDefault();
 
-    const response = await fetch(
-      "https://myapi.holycareschool.com/api/login",
-    //   baseURL,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      }
-    );
+    const response = await fetch("https://myapi.holycareschool.com/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
 
     const data = await response.json();
 

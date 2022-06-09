@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { baseURL } from "../../BaseURL/BaseURL";
 
 const Registration = () => {
   let navigate = useNavigate();
@@ -17,7 +16,6 @@ const Registration = () => {
     if (password === confirmPassword) {
       const response = await fetch(
         "https://myapi.holycareschool.com/api/register",
-        // baseURL,
         {
           method: "POST",
           headers: {
