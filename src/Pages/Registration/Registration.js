@@ -36,7 +36,7 @@ const Registration = () => {
         setMessage("You Are Successfully Register");
         navigate("/login");
       } else {
-        console.log(data)
+        console.log(data);
         setMessage("Something Went Wrong");
         navigate("/registration");
       }

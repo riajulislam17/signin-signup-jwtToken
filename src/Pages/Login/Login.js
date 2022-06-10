@@ -30,6 +30,7 @@ const Login = () => {
       setMessage("You Are Successfully Login");
       navigate("/home");
     } else {
+      e.target.reset("");
       setMessage("Check Your Username & Password");
     }
   }
