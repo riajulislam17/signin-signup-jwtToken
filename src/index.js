@@ -4,11 +4,11 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 const axios = require("axios").default;
-axios.defaults.baseURL = "https://myapi.holycareschool.com/api/";
-const userToken = localStorage.getItem("token");
-if (userToken) {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${userToken}`;
-}
+axios.defaults.baseURL = "https://myapi.holycareschool.com/api";
+// const userToken = localStorage.getItem("token");
+// if (userToken) {
+//   axios.defaults.headers.common["Authorization"] = `Bearer ${userToken}`;
+// }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,7 +17,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

@@ -1,12 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useAuthorization from "../../Authentication/Hooks/useAuthorization";
 
 const Header = () => {
   let navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const { token } = useAuthorization();
 
   const logOut = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
     navigate("/login");
   };
   return (
@@ -40,7 +41,7 @@ const Header = () => {
               {token ? (
                 <div>
                   <span className="navbar-text fw-bold text-white bg-success p-2 rounded-pill">
-                    <i className="fas fa-user"></i> Name
+                    <i className="fas fa-user"></i> User Name
                   </span>
                   <button
                     onClick={logOut}

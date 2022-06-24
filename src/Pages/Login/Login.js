@@ -3,38 +3,60 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   let navigate = useNavigate();
-
+  const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
-  async function handleLogin(e) {
+  const handleLogin = (e) => {
     e.preventDefault();
-
-    const response = await fetch("https://myapi.holycareschool.com/api/login", {
+    const url = "https://myapi.holycareschool.com/api/login";
+    fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "content-type": "application/json",
       },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+      body: JSON.stringify({ email, password }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === true) {
+          localStorage.setItem("accessToken", data.token);
+          console.log(data.token);
+          e.target.reset("");
+          setMessage("You Are Successfully Login");
+          navigate("/home");
+        } else {
+          setMessage("Check Your Username & Password");
+        }
+      });
+  };
 
-    const data = await response.json();
+  // async function handleLogin(e) {
+  //   e.preventDefault();
 
-    if (data.status === true) {
-      e.target.reset("");
-      localStorage.setItem("token", data.token);
-      setMessage("You Are Successfully Login");
-      navigate("/home");
-    } else {
-      e.target.reset("");
-      setMessage("Check Your Username & Password");
-    }
-  }
+  //   const response = await fetch("https://myapi.holycareschool.com/api/login", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       email,
+  //       password,
+  //     }),
+  //   });
 
+  //   const data = await response.json();
+
+  //   if (data.status === true) {
+  //     e.target.reset("");
+  //     localStorage.setItem("token", data.token);
+  //     setMessage("You Are Successfully Login");
+  //     navigate("/home");
+  //   } else {
+  //     e.target.reset("");
+  //     setMessage("Check Your Username & Password");
+  //   }
+  // }
   return (
     <div>
       <div className="mx-auto mt-5 card w-75 ">
